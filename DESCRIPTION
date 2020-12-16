@@ -3,9 +3,9 @@ Type: Package
 Title: Statistical Analysis for Random Objects and Non-Euclidean Data
 URL: https://github.com/functionaldata/tFrechet
 BugReports: https://github.com/functionaldata/tFrechet/issues
-Version: 0.1.0
+Version: 0.2.0
 Encoding: UTF-8
-Date: 2020-06-09
+Date: 2020-12-15
 Authors@R: 
     c(person(given = "Yaqing",
              family = "Chen",
@@ -44,12 +44,12 @@ Description: Provides implementation of statistical methods for random objects
     References: Petersen, A., & Müller, H.-G. (2019) <doi:10.1214/17-AOS1624>.
 License: BSD_3_clause + file LICENSE
 LazyData: false
-Imports: corrplot, fdadensity, fdapace (>= 0.5.3), Matrix, methods,
-        pracma, rosqp
+Imports: corrplot, fdadensity, fdapace (>= 0.5.5), Matrix, methods,
+        pracma, osqp
 Suggests: Rcpp (>= 0.11.5), testthat
 RoxygenNote: 7.1.0
 NeedsCompilation: no
-Packaged: 2020-06-12 18:38:33 UTC; ychen
+Packaged: 2020-12-16 06:40:47 UTC; ychen
 Author: Yaqing Chen [aut, cre],
   Alvaro Gajardo [aut],
   Jianing Fan [aut],
@@ -59,4 +59,4 @@ Author: Yaqing Chen [aut, cre],
   Satarupa Bhattacharjee [aut],
   Hans-Georg Müller [cph, ths, aut]
 Repository: CRAN
-Date/Publication: 2020-06-19 10:00:07 UTC
+Date/Publication: 2020-12-16 07:00:07 UTC
