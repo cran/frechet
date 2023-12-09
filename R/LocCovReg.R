@@ -20,6 +20,7 @@
 #' \item{Mout}{A list of estimated conditional covariance or correlation matrices at \code{xout}.}
 #' \item{optns}{A list containing the \code{optns} parameters utilized.}
 #' @examples
+#' \donttest{
 #' #Example y input
 #'n=30             # sample size
 #'t=seq(0,1,length.out=100)       # length of data
@@ -35,7 +36,7 @@
 #'y = theta1%*%t(phi1) + theta2 %*% t(phi2)
 #'xout = matrix(c(0.25,0.5,0.75),3)
 #'Cov_est=LocCovReg(x=x,y=y,xout=xout,optns=list(corrOut=FALSE,metric="power",alpha=3))
-#'\donttest{
+#'
 #'#Example M input
 #'n=30 #sample size
 #'m=30 #dimension of covariance matrices
@@ -66,7 +67,7 @@ LocCovReg= function(x,y=NULL,M=NULL,xout,optns = list()){
   if(!metric %in% c("frobenius","power","cholesky","log_cholesky")){
     stop("metric choice not supported.")
   }
-  if(metric=="frobenius") {
+  if(metric=="frobenius") {#Faster implementation using LFRCov instead of LFRCovPower for Frobenius case
     res <- LFRCov(x=x, y=y,M=M,xout=xout,optns = optns)
   } else if(metric=="power") {
     res <- LFRCovPower(x=x, y=y,M=M,xout=xout,optns = optns)

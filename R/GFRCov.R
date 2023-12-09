@@ -47,6 +47,7 @@
 #' @references
 #' \cite{Petersen, A. and Müller, H.-G. (2019). Fréchet regression for random objects with Euclidean predictors. The Annals of Statistics, 47(2), 691--719.}
 #' \cite{Petersen, A., Deoni, S. and Müller, H.-G. (2019). Fréchet estimation of time-varying covariance matrices from sparse data, with application to the regional co-evolution of myelination in the developing brain. The Annals of Applied Statistics, 13(1), 393--419.}
+#' @importFrom Matrix nearPD forceSymmetric
 
 
 GFRCov  = function(x, y=NULL,M=NULL,xout,optns = list()){
@@ -85,6 +86,8 @@ GFRCov  = function(x, y=NULL,M=NULL,xout,optns = list()){
         M=array(as.numeric(unlist(M)), dim=c(dim(M[[1]])[1],dim(M[[1]])[1],length(M)))
       } else{
         if(!is.array(M)){
+          stop('M must be an array or a list')
+        } else if (length(dim(M))!=3) {
           stop('M must be an array or a list')
         }
       }

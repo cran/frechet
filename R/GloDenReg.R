@@ -44,6 +44,8 @@
 #' @references
 #' \cite{Petersen, A., & Müller, H.-G. (2019). "Fréchet regression for random objects with Euclidean predictors." The Annals of Statistics, 47(2), 691--719.}
 #' @export
+#' @importFrom fdadensity dens2quantile
+#' @importFrom pracma trapz
 
 GloDenReg <- function(xin=NULL, yin=NULL, hin=NULL, qin=NULL, xout=NULL, optns=list()) {
   if (is.null(optns$Rsquared)) optns$Rsquared <- FALSE
@@ -114,8 +116,6 @@ GloDenReg <- function(xin=NULL, yin=NULL, hin=NULL, qin=NULL, xout=NULL, optns=l
     } else if (!is.null(hin)) {
       if (!is.null(qin))
         warning ("qin is redundant when hin is available.")
-      if (!is.list(hin) | length(hin) != length(xin))
-        stop ("hin must be a list of the same length as xin.")
       for (histogram in hin) {
         if (!is.list(histogram))
           stop ("Each element of hin must be a list.")

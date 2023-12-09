@@ -13,6 +13,8 @@
 #' \item{Rsquared}{A logical variable indicating whether R squared would be returned. Default is \code{FALSE}.}
 #' \item{qSup}{A numerical vector of length m holding the probability grid on [0, 1] at which the input quantile functions take values. If \code{optns$Rsquared} is TRUE, \code{qSup} is needed. Default is \code{seq(1,2*m,2)/2/m}.}
 #' }
+#' @importFrom osqp solve_osqp osqpSettings
+#' @importFrom pracma trapz
 
 GloWassReg <- function(xin, qin, xout, optns=list()){
   if (is.null(optns$Rsquared)) optns$Rsquared <- FALSE
@@ -24,9 +26,9 @@ GloWassReg <- function(xin, qin, xout, optns=list()){
     xout <- as.matrix(xout)
   }
   if(nrow(xin)!=nrow(qin))
-    stop("xin and qin should have the same number of rows.")
+    stop("The numbers of observations in xin and qin are not the same.")
   if(ncol(xin)!=ncol(xout))
-    stop("xin and xout should have the same number of columns.")
+    stop("The numbers of variables in xin and xout are not the same.")
   if(optns$Rsquared & is.null(optns$qSup)){
     warning("optns$qSup is missing and taking the default value.")
   }
